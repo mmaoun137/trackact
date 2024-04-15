@@ -7,10 +7,7 @@ document.getElementById('subscribeForm').addEventListener('submit', function(eve
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            username: username, // pass the username variable here
-            password: password  // pass the password variable here
-        })
+        body: JSON.stringify({ username, password })
     })
     .then(response => {
         if (response.ok) {
@@ -22,7 +19,9 @@ document.getElementById('subscribeForm').addEventListener('submit', function(eve
     .then(data => {
         alert(data.message);
         if (data.message === "User registered successfully") {
-            window.location.href = '/login.html'; // Redirect to login page on successful registration
+            localStorage.setItem('loggedIn', true);
+            localStorage.setItem('username', username);
+            window.location.href = 'dashboard.html'; // Redirect to the dashboard page on successful registration
         }
     })
     .catch(error => alert(error.message)); // Display any errors

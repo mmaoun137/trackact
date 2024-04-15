@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
 const port = 3000;
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
@@ -12,7 +13,10 @@ let users = {
 };
 
 app.use(cors());  // This enables CORS for all resources on your server
-app.use(express.static('../client'));
+
+// Correctly serve the client directory using an absolute path
+app.use(express.static(path.join(__dirname, '..', 'client')));
+
 app.use(bodyParser.json());
 
 // Login endpoint
@@ -36,12 +40,21 @@ app.post('/api/register', (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+// Popular movies endpoint
+app.get('/api/popular-movies', async (req, res) => {
+    try {
+        const response = await axios.get(`${tmdbBaseUrl}/movie/popular`, {
+            params: {
+                api_key: process.env.TMDB_API_KEY
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching popular movies', error });
+    }
 });
 
-// In your 'server/app.js' file
-
+// Movie search endpoint
 app.get('/api/search-movies', async (req, res) => {
     const query = req.query.query;
     try {
@@ -57,3 +70,6 @@ app.get('/api/search-movies', async (req, res) => {
     }
 });
 
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
+});

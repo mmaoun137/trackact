@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TrackAct</title>
+    <title>Welcome to TrackAct</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Welcome to TrackAct</h1>
-    <div id="auth">
+    <!-- Sections for non-logged-in users -->
+    <div id="loginSubscribeSection">
         <button onclick="location.href='login.html'">Login</button>
         <button onclick="location.href='subscribe.html'">Subscribe</button>
     </div>
-    <script src="js/app.js"></script>
+    
+    <!-- Sections for logged-in users -->
+    <div id="userSection" class="hidden">
+        <span>Welcome, <span id="usernameTitle"></span>!</span>
+        <input type="text" id="movieSearchInput" placeholder="Search for movies..." autocomplete="off">
+        <div id="suggestionsBox"></div>
+        <button id="logoutButton" onclick="logout()">Logout</button>
+    </div>
+    
+    <!-- Placeholders for the movie list, populated dynamically if needed -->
+    <div id="movieList"></div>
+
+    <!-- Script to manage the display logic based on login status -->
+    
 </body>
 </html>
