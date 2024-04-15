@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (movieSearchInput) {
         movieSearchInput.addEventListener('input', function(e) {
             const query = e.target.value;
-            if (query.length > 2) { // Let's start searching after 2 characters
+            if (query.length > 0) { // Let's start searching after 2 characters
                 fetch(`/api/search-movies?query=${encodeURIComponent(query)}`)
                     .then(response => response.json())
                     .then(data => {
