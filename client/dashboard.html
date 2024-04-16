@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - TrackAct</title>
-    <!-- Add your CSS for styling the dashboard -->
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css"> <!-- Ensure the path to CSS is correct -->
 </head>
 <body>
     <h1>Welcome, <span id="usernameTitle">User</span>!</h1>
@@ -14,10 +12,18 @@
         <div id="suggestionsBox"></div>
     </div>
     <button id="addMovieBtn">Add Movie</button>
-    <div id="movieList"></div>
-    <div id="userSection">
-        
-        <button onclick="logout()">Logout</button>
+
+    <!-- Containers for Watched and Watchlist movies -->
+    <div id="watchedMovies" class="movie-list">
+        <h2>Watched Movies</h2>
+        <!-- Movies will be dynamically added here -->
+    </div>
+    <div id="watchlistMovies" class="movie-list">
+        <h2>Watchlist</h2>
+        <!-- Movies will be dynamically added here -->
+    </div>
+
+    <button onclick="logout()">Logout</button>
 
     <script src="js/dashboard.js"></script>
 </body>
