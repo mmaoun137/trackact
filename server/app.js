@@ -97,8 +97,6 @@ app.post('/api/movies', async (req, res) => {
  * @returns {Promise<string>} A promise that resolves with a success message.
  */
 
-// ... previous code ...
-
 // Helper function to read movie data from file
 function readMovieFile(category) {
     const filePath = path.join(__dirname, `${category}.json`);

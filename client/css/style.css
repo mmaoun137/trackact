@@ -11,9 +11,11 @@ body, h1, button, input {
   
   /* Style the body */
   body {
+    background-color: #121212; /* Dark background */
+    font-family: 'Arial', sans-serif;
+    color: #ffffff; /* White text color for better readability */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
   }
   
   /* Center the form on the page */
@@ -34,18 +36,28 @@ body, h1, button, input {
   }
   
   /* Style the buttons */
+  
   button {
-    padding: 10px 20px;
-    background-color: #5c6bc0;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #021409; /* Deep indigo background */
+    color: rgb(44, 147, 72); /* White text */
+    padding: 0.5rem 1rem; /* Padding around text */
+    border: none; /* No border */
+    border-radius: 2px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to a pointer on hover */
+    font-family: 'Arial', sans-serif; /* Font family */
+    font-size: 12px; /* Font size */
+    font-weight: bold; /* Bold font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Box shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for transform and box shadow */
+  }
+
+  button:hover {
+    background-color: #121212; /* Darker indigo background on hover */
+    transform: translateY(-4px); /* Button raises up on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Larger box shadow on hover */
   }
   
-  button:hover {
-    background-color: #3f51b5;
-  }
   
   /* Styles specific to the user section */
   #userSection {
@@ -104,6 +116,7 @@ button:disabled {
     padding: 10px;
     border-bottom: 1px solid #eee;
     cursor: pointer;
+    color: #333; /* Darker text color */
   }
   
   /* Change background color on hover for suggestion items */
@@ -117,44 +130,78 @@ button:disabled {
   }
 
   /* General styles for the movie containers */
+/* General styles for the movie containers */
 #watchedMovies, #watchlistMovies {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start; /* Align movies to start from the left */
   padding: 20px;
   gap: 20px;
 }
 
-/* Styling for individual movie cards */
-/* ... existing styles ... */
-
-/* Adjust movie card styles */
-.movie-card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  width: 150px; /* Smaller width */
-  margin: 10px; /* Space between cards */
-  overflow: hidden;
-  position: relative; /* Positioning context for the delete button */
+.movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Reduced min size from 150px to 120px */
+  gap: 1rem;
+  padding: 1rem;
 }
 
-/* Style the delete button */
+
+.movie-card {
+  width: calc(15% - 20px);
+  background: #2c2c2c; /* Dark background similar to reference */
+  border-radius: 4px; /* Rounded corners like reference */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+}
+
+.movie-card .rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+  color: #ffffff; /* White text */
+  padding: 5px 10px;
+  border-radius: 14px; /* Rounded corners for the rating bubble */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
 .delete-btn {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-  background-color: #ff6347; /* Tomato red for visibility, change as needed */
-  color: white;
+  top: 10px;
+  right: 10px;
+  padding: 0 2px;
+  background-color: #f7f4f5; 
+  color: rgb(65, 64, 64);
   border: none;
+  border-radius: 50%;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
 }
 
 .delete-btn:hover {
   opacity: 1;
+}
+
+
+.movie-card h3 {
+  font-size: 0.9rem; /* Smaller font size */
+  color: #ffffff; /* White text color */
+  margin: 0.5rem; /* Adjust margin for spacing */
 }
 
 .movie-card h4 {
@@ -170,9 +217,6 @@ button:disabled {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Button to delete the movie from the list */
-
-/* Adding padding inside the movie card for content */
 .movie-card div.content {
   padding: 10px;
 }
@@ -185,3 +229,29 @@ button:disabled {
   margin-top: 5px;
 }
 
+/* Centered container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 1em;
+  color: #ffffff; /* White color for titles */
+}
+
+#movieSearchInput {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for the input field */
+  color: #e5e5e5; /* Soft off-white for the text */
+}
+
+/* Ensures the suggestion box is visible on top of other elements */
+#suggestionsBox {
+  z-index: 10;
+}

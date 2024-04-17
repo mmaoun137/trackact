@@ -162,13 +162,15 @@ function createMovieCard(movie, category) {
     card.className = 'movie-card';
     card.innerHTML = `
         <div class="delete-btn" onclick="confirmDeleteMovie(${movie.id}, '${category}')">X</div>
-        <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}">
+        <img src="https://image.tmdb.org/t/p/original${movie.poster_path}" alt="${movie.title}" class="movie-poster">
         <h3>${movie.title}</h3>
-        <p>${movie.overview}</p>
+        
     `;
     // ... rest of your card creation code ...
     return card;
 }
+
+
 
 // Function to confirm movie deletion
 
